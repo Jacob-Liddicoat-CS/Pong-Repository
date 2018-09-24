@@ -7,7 +7,7 @@ float ballMoveY = 1.0;
 
 void setup() {
   size(500, 500);
-  ballStartX = width/2;
+  ballStartX = width/2; //Start Ball at Centre
   ballStartY = height/2;
   ballX = ballStartX;
   ballY = ballStartY;
@@ -33,7 +33,6 @@ void draw() {
   }
   fill(0); //black
   ellipse(ballX, ballY, ballDiameter, ballDiameter); //ball is ratio of width
-  //Pong table here is square but does not need to be
   //Thus take same key-variable for size of ball
   print ("ballX: " + ballX);
   println (", ballY: " +ballY);
