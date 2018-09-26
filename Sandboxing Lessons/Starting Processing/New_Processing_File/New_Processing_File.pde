@@ -21,11 +21,11 @@ void draw() {
   if (ballX == width | ballX == 0| ballY == height | ballY ==0) {
     if (ballX == width | ballX == 0) {
       ballMoveX = ballMoveX * (-1);
-  }
+    }
 
-  if (ballY == height - ballDiameter/2 | ballY == 0 + ballDiameter/2) {
-    ballMoveY = ballMoveY * (-1);
-   }
+    if (ballY == height - ballDiameter/2 | ballY == 0 + ballDiameter/2) {
+      ballMoveY = ballMoveY * (-1);
+    }
   }
   if (ballX <= width && ballX >=0) {
     ballX += ballMoveX;
@@ -36,11 +36,15 @@ void draw() {
   fill(0); //black
   ellipse(ballX, ballY, ballDiameter, ballDiameter); //ball is ratio of width
   //Thus take same key-variable for size of ball
-  
-  number = int (random (-2, 2)); //Will pick random number in these areas
-  while (number == 0); {
-    number = int (random (-2, 2));
-  }
+
+  for ( int i=0; i <= 1 000 000; i++) {
+    number = int (random (-2, 2)); //Will pick random number in these areas
+    while (number == 0); {
+      number = int (random (-2, 2));
+    }
+    if (number == -1) {counter -1 += 1;}
+    if (number == 1) {counter 1 += 1;}
+  } //End FOR Loop
   counter += 1;
   println ("Choice#" + counter + ": " + number);
   print ("ballX: " + ballX);
