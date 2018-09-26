@@ -4,6 +4,8 @@ int ballY, ballStartY;
 int ballDiameter;
 float ballMoveX = 1.0;
 float ballMoveY = 1.0;
+int number;
+int counter;
 
 void setup() {
   size(500, 500);
@@ -34,6 +36,13 @@ void draw() {
   fill(0); //black
   ellipse(ballX, ballY, ballDiameter, ballDiameter); //ball is ratio of width
   //Thus take same key-variable for size of ball
+  
+  number = int (random (-2, 2)); //Will pick random number in these areas
+  while (number == 0); {
+    number = int (random (-2, 2));
+  }
+  counter += 1;
+  println ("Choice#" + counter + ": " + number);
   print ("ballX: " + ballX);
   println (", ballY: " +ballY);
 }
