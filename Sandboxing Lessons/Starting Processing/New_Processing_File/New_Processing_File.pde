@@ -5,7 +5,7 @@ int ballDiameter;
 float ballMoveX = 1.0;
 float ballMoveY = 1.0;
 int number;
-int counter;
+int [] counter = {0, 0};
 
 void setup() {
   size(500, 500);
@@ -37,16 +37,17 @@ void draw() {
   ellipse(ballX, ballY, ballDiameter, ballDiameter); //ball is ratio of width
   //Thus take same key-variable for size of ball
 
-  for ( int i=0; i <= 1 000 000; i++) {
+  for ( int i=0; i <= 1000000; i++) {
     number = int (random (-2, 2)); //Will pick random number in these areas
     while (number == 0); {
       number = int (random (-2, 2));
     }
-    if (number == -1) {counter -1 += 1;}
-    if (number == 1) {counter 1 += 1;}
+    if (number == -1) {counter[0]+=1;}
+    if (number == 1) {counter[1]+=1;}
   } //End FOR Loop
-  counter += 1;
-  println ("Choice#" + counter + ": " + number);
+  
+  println ("Number of -1: " + counter[0]);
+  println ("Number of 1: " + counter[1]);
   print ("ballX: " + ballX);
   println (", ballY: " +ballY);
 }
