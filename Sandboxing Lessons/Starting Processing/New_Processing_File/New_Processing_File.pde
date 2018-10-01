@@ -1,53 +1,41 @@
 // Global variables
-int ballX, ballStartX;
-int ballY, ballStartY;
+int ballX, ballY;
+int ballStartX, ballStartY;
 int ballDiameter;
-float ballMoveX = 1.0;
-float ballMoveY = 1.0;
-int number;
-int [] counter = {0, 0};
+int ballMoveX = 1, ballMoveY = 1;
+int paddleWidthRatio;
+int paddleHeightRatio = 10;
+int [] paddle = {0, 0};
+int [] player = new int [4];
+// End Global Variables
 
 void setup() {
-  size(500, 500);
+  size(500, 600);
   ballStartX = width/2; //Start Ball at Centre
   ballStartY = height/2;
   ballX = ballStartX;
   ballY = ballStartY;
   ballDiameter= width/70;
+  
+  paddleWidthRatio = ballDiameter/2;
+  paddle[1] = height/paddleHeightRatio; 
+  player[0] = 0;
+  player[1] = height/2 - height/paddleHeightRatio/2;
+  int section = width / paddleWidthRatio;
+  player[2] = width*(section-1)/section;
+  player[3] = height/2;
 }
 
 void draw() {
   background(#03FF00); //Green
-  if (ballX == width | ballX == 0| ballY == height | ballY ==0) {
-    if (ballX == width | ballX == 0) {
-      ballMoveX = ballMoveX * (-1);
-    }
-
-    if (ballY == height - ballDiameter/2 | ballY == 0 + ballDiameter/2) {
-      ballMoveY = ballMoveY * (-1);
-    }
+  ballX += ballMoveX;
+  ballY += ballMoveY;
+  if (ballX == width || ballX == 0) {
+    ballMoveX = ballMoveX * (-1);
   }
-  if (ballX <= width && ballX >=0) {
-    ballX += ballMoveX;
-  }
-  if (ballY <= height && ballY >= 0) {
-    ballY += ballMoveY;
+  if (ballY == height || ballY == 0) {
+    ballMoveY = ballMoveY * (-1);
   }
   fill(0); //black
-  ellipse(ballX, ballY, ballDiameter, ballDiameter); //ball is ratio of width
-  //Thus take same key-variable for size of ball
-
-  for ( int i=0; i <= 1000000; i++) {
-    number = int (random (-2, 2)); //Will pick random number in these areas
-    while (number == 0); {
-      number = int (random (-2, 2));
-    }
-    if (number == -1) {counter[0]+=1;}
-    if (number == 1) {counter[1]+=1;}
-  } //End FOR Loop
-  
-  println ("Number of -1: " + counter[0]);
-  println ("Number of 1: " + counter[1]);
-  print ("ballX: " + ballX);
-  println (", ballY: " +ballY);
+  ellipse(ballX, ballY, ballDiameter, ballDiameter);
 }
