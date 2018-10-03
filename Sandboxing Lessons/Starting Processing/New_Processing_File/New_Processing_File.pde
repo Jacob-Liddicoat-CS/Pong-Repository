@@ -3,6 +3,7 @@ int ballX, ballY;
 int ballStartX, ballStartY;
 int ballDiameter;
 int ballMoveX = 1, ballMoveY = 1;
+int [] score = {0, 0}; //Player score 1 & 2
 int paddleWidthRatio;
 int paddleHeightRatio = 10;
 int [] paddle = {0, 0};
@@ -38,7 +39,17 @@ void draw() {
     ballMoveX *= (-1); //Shorthand for previous x*-1
   }
   
-  //Ball Movement within Pong Table
+  //Calculating Score
+  if (ballX == width || ballX == 0) {
+    if (ballX == 0) { //Player 2 Score
+      score[1] += 1;
+    }
+    if (ballX == width) { //Player 1 Score
+      score[0] += 1;
+    }
+  }
+  
+  //Code to bounce off paddles
   if (ballX == width || ballX == 0) {
     ballMoveX = ballMoveX * (-1);
   }
