@@ -1,9 +1,8 @@
 // Global Variables
-int ballX;
-int ballY;
-int ballStartX;
-int ballStartY;
+int ballX, ballY;
+int ballStartX, ballStartY;
 int ballDiameter;
+int ballMoveX = 1, ballMoveY = 1;
 
 void setup() {
   size(500, 500);
@@ -18,6 +17,12 @@ void draw() {
   background(#E9FF03); //Yellow
 
   //Ball Movement within Pong Table
+  if (ballX == 500) {
+    ballMoveX= ballMoveX * (-1);
+  }
+  if (ballY == 500) {
+    ballMoveY = ballMoveY * (-1);
+  }
   if (ballX < width) {
     ballX += 1; //origonally x+1 operation
   } 
