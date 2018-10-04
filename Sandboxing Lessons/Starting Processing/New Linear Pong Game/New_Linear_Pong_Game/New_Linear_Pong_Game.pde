@@ -37,6 +37,12 @@ void draw() {
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
 
+  // Code to bounce off of a paddle, does not interfer with score code since at different X-axis values, 
+  // just before goal area
+  if (ballX == paddle[0] && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
+    ballMoveX *= (-1); //Shorthand for previous x*-1
+  }
+
   //Ball Movement within Pong Table
   if (ballX == width || ballX == 0) {
     ballMoveX= ballMoveX * (-1);
