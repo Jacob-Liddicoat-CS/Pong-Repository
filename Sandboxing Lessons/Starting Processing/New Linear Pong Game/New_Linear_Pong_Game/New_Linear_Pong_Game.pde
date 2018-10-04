@@ -18,7 +18,7 @@ void setup() {
   ballX = ballStartX;
   ballY = ballStartY;
   ballDiameter = width/70; //must pick one dimension for both ellipse diameters, for a circle
-  
+
   paddleWidthRatio = ballDiameter/2;
   paddle[0] = paddleWidthRatio; 
   paddle[1] = height/paddleHeightRatio; 
@@ -47,7 +47,40 @@ void draw() {
   //Printing Ball
   fill(0); //Black
   ellipse(ballX, ballY, ballDiameter, ballDiameter);
-  
+
+  //Code to Move Paddles, keyboard and mouseX&Y key variables
+  //Player 1 Movement
+  if (keyPressed == true & key == CODED) { //alternate is void keyPressed(){}, always contains the most recent keyboard key stroke
+    if (keyCode == UP) { //KeyCode is used for UP, DOWN, LEFT, and RIGHT; and ALT, CONTROL, and SHIFT
+      if (player[1] >= 5) { //Easier to use && instead of nesting IF Statements
+        player[1] -= 5; //Review incrementation other than -1
+      }
+      if (player[1] < 0) { //Catch any subtraction equalling less than zero
+        player[1] = 0;
+      }
+    }
+
+    if (keyCode == DOWN) {
+      if (player[1] + paddle[1] <= height) {
+        player[1] += 5; //Review incrementation other than +1
+      }
+      if (player[1] + paddle[1] > height) {
+        player[1] = height - paddle[1] - 1; //Cannot add "player[1] + paddle[1]" in an assignment; thus, algebra needed
+        //Note: the "-1" shows the black border of the paddle at the bottom, which looks more aesthetic
+        //Note: the height is actaully -1 pixel because of the border
+      }
+    }
+  } //End of keyPressed
+
+  //Player 2 Movement
+  if (mouseY >=0 || mouseY - paddle[1] < height) {
+    player[3] = mouseY;
+  }
+  if (mouseY >= height - paddle[1]) {
+    player[3] = height - paddle[1] - 1;
+  }
+  //println (mouseY);
+
   //Drawing Paddles
   fill(#FF00FF); //Purple
   rect(player[0], player[1], paddle[0], paddle[1]);
@@ -55,6 +88,6 @@ void draw() {
   fill(0); //Reseting to Black
 
   //Debugging Ball Position
-  print ("Ball X-Value: " + ballX);
-  println (", Ball Y-Value: " + ballY);
+  //print ("Ball X-Value: " + ballX);
+  //println (", Ball Y-Value: " + ballY);
 }
