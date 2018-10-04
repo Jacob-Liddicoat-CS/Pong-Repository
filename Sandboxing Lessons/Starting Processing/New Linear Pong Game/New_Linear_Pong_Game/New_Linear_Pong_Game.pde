@@ -3,13 +3,15 @@ int ballX, ballY;
 int ballStartX, ballStartY;
 int ballDiameter;
 int ballMoveX = 1, ballMoveY = 1;
+int [] score = {0, 0};
+float number;
+int counter;
 int paddleWidthRatio; //Variable is being repeated in setup() figuring good width of paddle, half of ballDiameter
 //Reason: do not bounce of the edge of the paddle
 int paddleHeightRatio = 10;
 int [] paddle = {0, 0}; //Paddle width and height
 int [] player = new int [4]; //Alternate way of initializing an Array, for paddles
 //0: Player1_X, 1:Player1_Y, 2:Player2_X, 3:Player2_Y
-int [] score = {0, 0};
 // End Global Variables
 
 void setup() {
@@ -37,6 +39,10 @@ void draw() {
   //Section necessary when calling functions so passing current arguements
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
+  
+  number = random (-1.49, 1.49); //Will pick random number in these areas
+  counter += 1;
+  println ("Choice#" + counter + ": " + number);
 
   //Ball Movement within Pong Table
   if (ballX == 0 || ballX == width) { //Score for Player 2, note the index
