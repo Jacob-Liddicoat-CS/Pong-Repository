@@ -9,6 +9,7 @@ int paddleHeightRatio = 10;
 int [] paddle = {0, 0}; //Paddle width and height
 int [] player = new int [4]; //Alternate way of initializing an Array, for paddles
 //0: Player1_X, 1:Player1_Y, 2:Player2_X, 3:Player2_Y
+int [] score = {0, 0};
 // End Global Variables
 
 void setup() {
@@ -37,19 +38,29 @@ void draw() {
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
 
+  //Ball Movement within Pong Table
+  if (ballX == 0 || ballX == width) { //Score for Player 2, note the index
+    if (ballX == 0) { //Player 2 Score
+      score[1] += 1;
+    }
+    if (ballX == width) { //Player 1 Score
+      score[0] += 1;
+    }
+    ballX = ballStartX;
+    ballY = ballStartY;
+    println ("Score Board is: " + score[0] + " Player-1" + "     " + score[1] + " Player-2");
+  }
+
   // Code to bounce off of a paddle, does not interfer with score code since at different X-axis values, 
   // just before goal area
   if (ballX == paddle[0] && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
     ballMoveX *= (-1); //Shorthand for previous x*-1
   }
 
-  //Ball Movement within Pong Table
-  if (ballX == width || ballX == 0) {
-    ballMoveX= ballMoveX * (-1);
-  }
   if (ballY == height || ballY == 0) {
     ballMoveY = ballMoveY * (-1);
   }
+
   //Printing Ball
   fill(0); //Black
   ellipse(ballX, ballY, ballDiameter, ballDiameter);
