@@ -73,13 +73,13 @@ void draw() {
   } //End of keyPressed
 
   //Player 2 Movement
-  if (mouseY >=0 || mouseY - paddle[1] < height) {
-    player[3] = mouseY;
+  player[3] = ballY - paddle[1]/2;
+  if (player[3] <= 0) {
+    player[3] = 0;
   }
-  if (mouseY >= height - paddle[1]) {
+  if (player[3] >= height - paddle[1]) {
     player[3] = height - paddle[1] - 1;
   }
-  //println (mouseY);
 
   //Drawing Paddles
   fill(#FF00FF); //Purple
