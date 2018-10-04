@@ -5,7 +5,7 @@ int ballDiameter;
 int ballMoveX = 1, ballMoveY = 1;
 
 void setup() {
-  size(500, 500);
+  size(500, 600);
   ballStartX = width/2;
   ballStartY = height/2;
   ballX = ballStartX;
@@ -16,18 +16,17 @@ void setup() {
 void draw() {
   background(#E9FF03); //Yellow
 
+  //Calcualting "next" ball position
+  //Section necessary when calling functions so passing current arguements
+  ballX += ballMoveX; //origonally x+1 operation
+  ballY += ballMoveY; //origonally x+1 operation
+
   //Ball Movement within Pong Table
-  if (ballX == 500) {
+  if (ballX == width || ballX == 0) {
     ballMoveX= ballMoveX * (-1);
   }
-  if (ballY == 500) {
+  if (ballY == height || ballY == 0) {
     ballMoveY = ballMoveY * (-1);
-  }
-  if (ballX < width) {
-    ballX += 1; //origonally x+1 operation
-  } 
-  if (ballY < height) {
-    ballY += 1; //origonally x+1 operation
   }
   //Printing Ball
   fill(0); //Black
