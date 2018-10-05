@@ -50,13 +50,16 @@ void draw() {
     }
     ballX = ballStartX;
     ballY = ballStartY;
-    println ("Score Board is: " + score[0] + " Player-1" + "     " + score[1] + " Player-2");
   }
 
-  // Code to bounce off of a paddle, does not interfer with score code since at different X-axis values, 
-  // just before goal area
+  // Code to bounce off of a paddle
+  //Player 1 Paddle Bounce
   if (ballX == paddle[0] && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
     ballMoveX *= (-1); //Shorthand for previous x*-1
+  }
+  //Player 2 Paddle Bounce
+  if (ballX == paddle[0] && ballY >= player[3] & ballY <= player[3] + paddle[1]) {
+    ballMoveX *= (-1);
   }
 
   if (ballY == height || ballY == 0) {
@@ -105,13 +108,12 @@ void draw() {
   rect(player[0], player[1], paddle[0], paddle[1]);
   rect(player[2], player[3], paddle[0], paddle[1]);
   fill(0); //Reseting to Black
-  
+
   //Printing Score to the Canvas
   textSize(0.1*width);
   text(score[0], (width*1/5)-(0.1*width), height*1/5); //Printing to ration of screen, Player 1 is minusing width of font
   // Note: review of Character escape and this seems to "busy" on the screen
   text(score[1], width*4/5, height*1/5);
-  println ("Score Board is: " + score[0] + " Player-1" + "     " + score[1] + " Player-2");
 
   //Debugging Ball Position
   //print ("Ball X-Value: " + ballX);
