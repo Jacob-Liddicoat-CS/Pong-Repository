@@ -4,7 +4,7 @@ int ballStartX, ballStartY;
 int ballDiameter;
 int ballMoveX = 1, ballMoveY = 1;
 int [] score = {0, 0};
-float number;
+int number;
 int counter;
 int paddleWidthRatio; //Variable is being repeated in setup() figuring good width of paddle, half of ballDiameter
 //Reason: do not bounce of the edge of the paddle
@@ -39,10 +39,6 @@ void draw() {
   //Section necessary when calling functions so passing current arguements
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
-  
-  number = random (-1.49, 1.49); //Will pick random number in these areas
-  counter += 1;
-  println ("Choice#" + counter + ": " + number);
 
   //Ball Movement within Pong Table
   if (ballX == 0 || ballX == width) { //Score for Player 2, note the index
@@ -109,6 +105,13 @@ void draw() {
   rect(player[0], player[1], paddle[0], paddle[1]);
   rect(player[2], player[3], paddle[0], paddle[1]);
   fill(0); //Reseting to Black
+  
+  //Printing Score to the Canvas
+  textSize(0.1*width);
+  text(score[0], (width*1/5)-(0.1*width), height*1/5); //Printing to ration of screen, Player 1 is minusing width of font
+  // Note: review of Character escape and this seems to "busy" on the screen
+  text(score[1], width*4/5, height*1/5);
+  println ("Score Board is: " + score[0] + " Player-1" + "     " + score[1] + " Player-2");
 
   //Debugging Ball Position
   //print ("Ball X-Value: " + ballX);
