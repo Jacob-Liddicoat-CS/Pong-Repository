@@ -35,12 +35,6 @@ void playGame () {
   //Draws the Ball
   fill(0); //Black
   ellipse(ballX, ballY, ballDiameter, ballDiameter);
-  
-  //Drawing Paddles
-  fill(#FF00FF); //Purple
-  rect(player[0], player[1], paddle[0], paddle[1]);
-  rect(player[2], player[3], paddle[0], paddle[1]);
-  fill(0); //Reseting to Black
 
   //Code to Move Paddles, keyboard and mouseX&Y key variables
   //Player 1 Movement
@@ -74,4 +68,9 @@ void playGame () {
   if (player[3] >= height - paddle[1]) {
     player[3] = height - paddle[1] - 1;
   }
+  //Drawing Paddles
+  fill(#FF00FF); //Purple
+  rect(player[0], player[1], paddle[0], paddle[1]);
+  rect(player[2], player[3], paddle[0], paddle[1]);
+  fill(0); //Reseting to Black
 }
