@@ -8,7 +8,7 @@ int ballMoveX = 1, ballMoveY = 1;
 //This File is the main file
 //It calls each Procedure in either setup() or draw()
 void setup() {
-  size(500, 500);
+  size(500, 600);
   //Debug: square vs rectangle
   gameStart(); //arithemetic to calcaulte starting positions of paddles and ball
 }
