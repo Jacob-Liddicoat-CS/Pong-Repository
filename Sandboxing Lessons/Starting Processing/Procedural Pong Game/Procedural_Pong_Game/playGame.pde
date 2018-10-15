@@ -15,20 +15,6 @@ void playGame () {
     ballMoveY = ballMoveY * (-1);
   }
 
-  // Code to bounce off of a paddle
-  //Player 1 Paddle Bounce
-  if (ballX == paddle[0] && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
-    ballMoveX *= (-1); //Shorthand for previous x*-1
-  }
-  //Player 2 Paddle Bounce
-  if (ballX == paddle[0] && ballY >= player[3] & ballY <= player[3] + paddle[1]) {
-    ballMoveX *= (-1);
-  }
-
-  if (ballY == height || ballY == 0) {
-    ballMoveY = ballMoveY * (-1);
-  }
-
   ballSquish(); //Procedure to be called during playGame
   //Called when ball bounces (top, bottom, & paddles)
 
