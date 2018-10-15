@@ -41,15 +41,11 @@ void draw() {
   ballY += ballMoveY; //origonally x+1 operation
 
   //Ball Movement within Pong Table
-  if (ballX == 0 || ballX == width) { //Score for Player 2, note the index
-    if (ballX == 0) { //Player 2 Score
-      score[1] += 1;
-    }
-    if (ballX == width) { //Player 1 Score
-      score[0] += 1;
-    }
-    ballX = ballStartX;
-    ballY = ballStartY;
+  if (ballX == 0+ballDiameter || ballX == width-ballDiameter) {
+    ballMoveX= ballMoveX * (-1);
+  }
+  if (ballY == 0+ballDiameter || ballY == height-ballDiameter ) {
+    ballMoveY = ballMoveY * (-1);
   }
 
   // Code to bounce off of a paddle
