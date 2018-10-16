@@ -50,26 +50,34 @@ void draw() {
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
 
-  //Ball Movement within Pong Table
-  if (ballX == 0+ballDiameter || ballX == width-ballDiameter) {
-    ballMoveX= ballMoveX * (-1);
-  }
-  if (ballY == 0+ballDiameter || ballY == height-ballDiameter ) {
-    ballMoveY = ballMoveY * (-1);
-  }
-
-  // Code to bounce off of a paddle
-  //Player 1 Paddle Bounce
-  if (ballX == paddle[0] && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
+  // Code to bounce off of paddles
+  if (ballX == paddle[0]+(ballDiameter/2) && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
     ballMoveX *= (-1); //Shorthand for previous x*-1
   }
-  //Player 2 Paddle Bounce
-  if (ballX == paddle[0] && ballY >= player[3] & ballY <= player[3] + paddle[1]) {
-    ballMoveX *= (-1);
+  if (ballX == player[2]-(ballDiameter/2) && ballY >= player[3] & ballY <= player[3] + paddle[1]) {
+    ballMoveX *= (-1); //Shorthand for previous x*-1
   }
 
-  if (ballY == height || ballY == 0) {
+  // Code to Bounce off Floor and Ceiling
+  if (ballY == 0+(ballDiameter/2) || ballY == height-(ballDiameter/2) ) {
     ballMoveY = ballMoveY * (-1);
+  }
+
+  //Ball Movement within Pong Table after scoring
+  if (ballX == 0+(ballDiameter/2) || ballX == width-(ballDiameter/2)) { //Score for Player 2, note the index
+    if (ballX == 0+(ballDiameter/2)) { //Player 2 Score
+      score[1] += 1;
+    }
+    if (ballX == width-(ballDiameter/2)) { //Player 1 Score
+      score[0] += 1;
+    }
+
+    //Resetting the Ball Position
+    ballX = ballStartX;
+    ballY = ballStartY;
+
+    //Resetting the ARROW Controlled Paddle to the center
+    player[1] = height/2 - height/paddleHeightRatio/2;
   }
 
   //Printing Ball
