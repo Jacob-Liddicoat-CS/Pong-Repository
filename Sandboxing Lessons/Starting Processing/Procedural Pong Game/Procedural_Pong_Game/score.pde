@@ -1,7 +1,27 @@
 void score () {
-  //Printing Score to the Canvas
-  int [] score = {0, 0}; //Player score 1 & 2
+  //Printing Score to the Canvas and resetting game
   
+  //Ball Movement within Pong Table after scoring
+  if (ballX == 0+(ballDiameter/2) || ballX == width-(ballDiameter/2)) { //Score for Player 2, note the index
+    if (ballX == 0+(ballDiameter/2)) { //Player 2 Score
+      score[1] += 1;
+    }
+    if (ballX == width-(ballDiameter/2)) { //Player 1 Score
+      score[0] += 1;
+    }
+    
+    //Resetting the Ball Position
+    ballX = ballStartX;
+    ballY = ballStartY;
+    
+    //Resetting the ARROW Controlled Paddle to the center
+    player[1] = height/2 - height/paddleHeightRatio/2;
+    
+    //Old Debugging Code
+    //println ("Score Board is: " + score[0] + " Player-1" + "     " + score[1] + " Player-2");
+    //println("Middle: " + player[1]);
+  }
+
   textSize(0.1*width);
   text(score[0], (width*1/5)-(0.1*width), height*1/5); //Printing to ration of screen, Player 1 is minusing width of font
   // Note: review of Character escape and this seems to "busy" on the screen
