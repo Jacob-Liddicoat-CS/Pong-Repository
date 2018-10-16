@@ -7,20 +7,22 @@ void playGame () {
   ballX += ballMoveX; //origonally x+1 operation
   ballY += ballMoveY; //origonally x+1 operation
 
-  //Ball Movement within Pong Table
-  if (ballX == 0+ballDiameter || ballX == width-ballDiameter) {
-    ballMoveX= ballMoveX * (-1);
+  // Code to bounce off of paddles, does not interfer with score code since at different X-axis values, just before goal area
+  // Collision of 3 requirements to define paddle area
+  if (ballX == paddle[0]+(ballDiameter/2) && ballY >= player[1] & ballY <= player[1] + paddle[1]) {
+    ballMoveX *= (-1); //Shorthand for previous x*-1
   }
-  if (ballY == 0+ballDiameter || ballY == height-ballDiameter ) {
+  if (ballX == player[2]-(ballDiameter/2) && ballY >= player[3] & ballY <= player[3] + paddle[1]) {
+    ballMoveX *= (-1); //Shorthand for previous x*-1
+  }
+
+  // Code to Bounce off Floor and Ceiling
+  if (ballY == 0+(ballDiameter/2) || ballY == height-(ballDiameter/2) ) {
     ballMoveY = ballMoveY * (-1);
   }
 
   ballSquish(); //Procedure to be called during playGame
   //Called when ball bounces (top, bottom, & paddles)
-
-  //Draws the Ball
-  fill(0); //Black
-  ellipse(ballX, ballY, ballDiameter, ballDiameter);
 
   //Code to Move Paddles, keyboard and mouseX&Y key variables
   //Player 1 Movement
@@ -47,13 +49,20 @@ void playGame () {
   } //End of keyPressed
 
   //Player 2 Movement
-  player[3] = ballY - paddle[1]/2;
-  if (player[3] <= 0) {
-    player[3] = 0;
+  if (mouseY >=0 || mouseY - paddle[1] < height) {
+    player[3] = mouseY;
   }
-  if (player[3] >= height - paddle[1]) {
+  if (mouseY >= height - paddle[1]) {
     player[3] = height - paddle[1] - 1;
   }
+
+  // Old Debugging Code
+  //println (mouseY);
+
+  //Draws the ball
+  fill(0); //Black
+  ellipse(ballX, ballY, ballDiameter, ballDiameter);
+
   //Drawing Paddles
   fill(#FF00FF); //Purple
   rect(player[0], player[1], paddle[0], paddle[1]);
