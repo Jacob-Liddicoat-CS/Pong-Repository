@@ -1,6 +1,6 @@
 void playGame () {
 
-  background(#E9FF03); //Yellow
+  background(#03FF00); //Green
 
   //Calcualting "next" ball position
   //Section necessary when calling functions so passing current arguements
