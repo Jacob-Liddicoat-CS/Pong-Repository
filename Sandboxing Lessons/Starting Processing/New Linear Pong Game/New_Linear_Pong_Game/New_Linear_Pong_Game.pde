@@ -30,6 +30,16 @@ void setup() {
   int section = width / paddleWidthRatio; // Local Variable: calculate the divisions of the paddle and draw in the last one
   player[2] = width*(section-1)/section; // *(paddlewidthRatio-1)/paddlewidthRatio
   player[3] = height/2;
+
+  //Randomizes the ball
+  ballMoveX = int (random (-2, 2));
+  while (ballMoveX == 0) {
+    ballMoveX = int (random (-2, 2));
+  }
+  ballMoveY = int (random (-2, 2));
+  while (ballMoveY == 0) {
+    ballMoveY = int (random (-2, 2));
+  }
 }
 
 void draw() {
